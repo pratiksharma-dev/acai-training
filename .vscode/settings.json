@@ -1,0 +1,13 @@
+{
+    "cSpell.words": [
+        "clustername",
+        "kubernetes",
+        "myakscluster",
+        "rbac",
+        "rg"
+    ],
+    "cSpell.ignoreWords": [
+        "azurepolicy",
+        "customaksrole"
+    ]
+}
