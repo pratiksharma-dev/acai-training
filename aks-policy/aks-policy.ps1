@@ -1,7 +1,6 @@
 # Set variables
 $clustername="myakscluster"
 $rg="aksRG"
-$subscriptionId=$env:azure_personal_subscriptionId
 
 # Provider register: Register the Azure Policy provider
 az provider register --namespace Microsoft.PolicyInsights
