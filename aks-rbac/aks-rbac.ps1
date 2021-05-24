@@ -1,7 +1,7 @@
 # Set variables
 $clustername="myakscluster"
 $rg="aksRG"
-$subscriptionId="daaad427-15a9-4542-9bdd-9d603751cab4"
+$subscriptionId=$env:azure_personal_subscriptionId
 
 # Create an AKS-managed Azure AD cluster with rbac and aad integration enabled
 az aks create -g $rg -n $clustername --enable-aad --enable-azure-rbac
