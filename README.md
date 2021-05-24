@@ -1,2 +1,2 @@
 # ACAI-Training
-Repo for training related scripts and assignments
+Repo for training related scripts, docs and assignments
