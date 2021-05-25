@@ -1,14 +1,14 @@
 # Gatekeeper 
 ![Gatekeeper](gatekeeper.png)
 
-# Azure policy for AKS with Gatekeeper
-![Azure Policy](azurepolicy.png)
-
 # Constraint Template
 ![Constraint Template](ConstraintTemplate.png)
 
 # Constraint
 ![Constraint](Constraint.png)
+
+# Azure policy for AKS with Gatekeeper
+![Azure Policy](azurepolicy.png)
 
 # Helpful resources
 
