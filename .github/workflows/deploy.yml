@@ -29,6 +29,6 @@ jobs:
           resource-group: ${{ env.RESOURCE_GROUP }}
 
       - run: |
-          helm install myapp-github ./aks-helm/myapp
+          helm install myapp-github "${GITHUB_WORKSPACE}/aks-helm/myapp"
 
       
