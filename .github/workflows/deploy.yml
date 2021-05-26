@@ -12,7 +12,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
  
-    steps:    
+    steps:
+      - uses: actions/checkout@v2
+          
       - uses: azure/setup-kubectl@v1
         with:
           version: 'v1.18.8'
@@ -29,6 +31,6 @@ jobs:
           resource-group: ${{ env.RESOURCE_GROUP }}
 
       - run: |
-          helm install myapp-github "${GITHUB_WORKSPACE}/aks-helm/myapp"
+          helm install myapp-github ./aks-helm/myapp"
 
       
