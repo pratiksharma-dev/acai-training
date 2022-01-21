@@ -1,0 +1,471 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "productFamily": {
+      "type": "string"
+    },
+    "clusterNumber": {
+      "type": "string",
+      "enum": ["01","02","03","04","05","06","07","08","09","10"]
+    },
+    "environment": {
+      "type": "string",
+      "enum": ["nonProduction","Production","nonProductionPCI","ProductionPCI"],
+       "errorMessage": {
+         "type": "should be an object", 
+         "required": "should have property foo",
+         "additionalProperties": "should not have properties other than foo"
+       }  
+    },  
+    "functionalArea": {
+      "type": "string",
+      "enum": ["supplyChain","commerce","business","centralSvcs","commerceSecurity","dataInsights","enterpriseServices","platform","platformsecurity"]
+    },
+    "clusterResourceGroup": {
+      "type": "string"
+    },
+    "clusterSubscription": {
+      "type": "string"
+    },
+    "clusterName": {
+      "type": "string",
+      "pattern": "g-aks-2[np]+"
+    },
+    "clusterVersion": {
+      "type": "string"
+    },
+    "region": {
+      "type": "string"
+    },
+    "deploymentModel": {
+      "type": "string",
+      "enum": ["onboarding", "lifecycle", "deletion"],
+       "errorMessage": {
+         "type": "should be an object", 
+         "required": "should have property foo",
+         "additionalProperties": "should not have properties other than foo"
+       } 
+    },
+    "patchSchedule": {
+      "type": "string"
+    },
+    "cluster": {
+      "type": "object",
+      "properties": {
+        "keyVaultName": {
+          "type": "string"
+        },
+        "aksSubnetName": {
+          "type": "string"
+        },
+        "systemNodePool": {
+         "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 7
+                },
+                "vmSize": {
+                  "type": "string"
+                },
+                "agentCount": {
+                  "type": "integer"
+                },
+                "maxCount": {
+                  "type": "integer"
+                },
+                "minCount": {
+                  "type": "integer"
+                },
+                "nodeLabels": {
+                  "type": "object",
+                  "properties": {
+                    "gaptech.com/user-nodepool": {
+                      "type": "string"
+                    },
+                    "gaptech.com/environment-dev": {
+                      "type": "string"
+                    },
+                    "gaptech.com/environment-test": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "nodeTaints": {
+                  "type": "array",
+                  "items": [
+                    {
+                      "type": "string"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "name",
+                "vmSize",
+                "agentCount",
+                "maxCount",
+                "minCount",
+                "nodeLabels",
+                "nodeTaints"
+              ]
+        },
+        "appNodePools": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 7
+                },
+                "vmSize": {
+                  "type": "string"
+                },
+                "agentCount": {
+                  "type": "integer"
+                },
+                "maxCount": {
+                  "type": "integer"
+                },
+                "minCount": {
+                  "type": "integer"
+                },
+                "nodeLabels": {
+                  "type": "object",
+                  "properties": {
+                    "gaptech.com/user-nodepool": {
+                      "type": "string"
+                    },
+                    "gaptech.com/environment-dev": {
+                      "type": "string"
+                    },
+                    "gaptech.com/environment-test": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+                "required": [
+                  "name",
+                  "vmSize",
+                  "agentCount",
+                  "maxCount",
+                  "minCount",
+                  "nodeLabels"
+                ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 7
+                },
+                "vmSize": {
+                  "type": "string"
+                },
+                "agentCount": {
+                  "type": "integer"
+                },
+                "maxCount": {
+                  "type": "integer"
+                },
+                "minCount": {
+                  "type": "integer"
+                },
+                "nodeLabels": {
+                  "type": "object",
+                  "properties": {
+                    "gaptech.com/user-nodepool": {
+                      "type": "string"
+                    },
+                    "gaptech.com/environment-dev": {
+                      "type": "string"
+                    },
+                    "gaptech.com/environment-test": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+                "required": [
+                  "name",
+                  "vmSize",
+                  "agentCount",
+                  "maxCount",
+                  "minCount",
+                  "nodeLabels"
+                ]
+            }
+          ]
+        },
+        "alertemails": {
+          "type": "array",
+          "items": {}
+        }
+      },
+      "required": [
+        "keyVaultName",
+        "aksSubnetName"
+      ]
+    },
+  "appServices": {
+    "type": "object",
+      "properties": {
+        "dev": {"type": "array","items": [{"type": "string"}]} ,
+        "test": {"type": "array","items": [{"type": "string"}]} ,
+        "stage": {"type": "array","items": [{"type": "string"}]},
+        "prod": {"type": "array","items": [{"type": "string"}]} 
+      }
+     },
+    "roles": {
+      "type": "object",
+      "properties": {
+        "readOnlyGroup": {
+          "type": "string"
+        },
+        "pimGroup": {
+          "type": "string"
+        },
+        "productSPN": {
+          "type": "string"
+        },
+         "pimApprovers": {
+          "type": "array",
+          "items": {}
+        }
+      },
+      "required": [
+        "readOnlyGroup",
+        "pimGroup",
+        "productSPN",
+        "pimApprovers"
+      ]
+    },
+   "sharedServices": {
+      "type": "object",
+      "properties": {
+        "aadpiVersion": {
+          "type": "string"
+        },
+        "csispVersion": {
+          "type": "string"
+        },
+        "ingress": {
+          "type": "string"
+        },
+        "tetrate": {
+          "type": "object",
+          "properties": {
+            "operatorVersion": {
+              "type": "string"
+            },
+            "controlPlaneVersion": {
+              "type": "string"
+            },
+            "installed": {
+              "type": "boolean"
+            },
+            "bridge": {
+              "type": "string"
+            },
+            "organization": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "operatorVersion",
+            "installed",
+            "bridge",
+            "organization"
+          ]
+        },
+        "agic": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "string"
+            },
+            "installed": {
+              "type": "boolean"
+            },
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "subnet": {
+                  "type": "string"
+                },
+                "vnet": {
+                  "type": "string"
+                },
+                "vnetrg": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "subnet",
+                "vnet",
+                "vnetrg"
+              ]
+            }
+          },
+          "required": [
+            "version",
+            "installed",
+            "parameters"
+          ]
+        },
+        "argo": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "string"
+            },
+            "installed": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "version",
+            "installed"
+          ]
+        },
+        "certManager": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "string"
+            },
+            "installed": {
+              "type": "boolean"
+            },
+            "selfSigned": {
+              "type": "boolean"
+            },
+            "istioCsrVersion": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "version",
+            "installed",
+            "selfSigned",
+            "istioCsrVersion"
+          ]
+        },
+        "externalDns": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "string"
+            },
+            "installed": {
+              "type": "boolean"
+            },
+            "endpoint": {
+              "type": "string"
+            },
+            "wapiPort": {
+              "type": "integer"
+            },
+            "wapiVersion": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "version",
+            "installed",
+            "endpoint",
+            "wapiPort",
+            "wapiVersion"
+          ]
+        },
+        "keda": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "string"
+            },
+            "installed": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "version",
+            "installed"
+          ]
+        },
+        "prisma": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "string"
+            },
+            "installed": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "version",
+            "installed"
+          ]
+        },
+        "overProvisioner": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "string"
+            },
+            "installed": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "version",
+            "installed"
+          ]
+        },
+        "splunk": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "string"
+            },
+            "installed": {
+              "type": "boolean"
+            },
+            "index": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "version",
+            "installed",
+            "index"
+          ]
+        }
+      }
+    }
+},
+"required": [
+    "productFamily",
+    "clusterNumber",
+    "environment",
+    "functionalArea",
+    "clusterResourceGroup",
+    "clusterSubscription",
+    "clusterName",
+    "region",
+    "deploymentModel",
+    "patchSchedule",
+    "cluster",
+    "appServices",
+    "roles"
+  ]
+}
